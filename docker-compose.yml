@@ -1,0 +1,46 @@
+version: '3.7'
+
+volumes:
+  registry_data:
+    driver: local
+  letsencrypt:
+    driver: local
+  ui_data:
+    driver: local
+
+services:
+  registry:
+    image: 'registry:2.7'
+    volumes:
+      - registry_data:/var/lib/registry/
+      - ./credentials.yml:/etc/docker/registry/config.yml
+      - ./auth:/auth
+    expose:
+      - "5000"
+
+  registry-frontend:
+    image: 'giesekow/docker-registry-ui:1.0.0'
+    expose:
+      - "80"
+    environment:
+      PORT: 80
+    volumes:
+      - ui_data:/db
+
+  nginx:
+    image: giesekow/nginx-letsencrypt:latest
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - registry
+      - registry-frontend
+    environment:
+      LE_EMAIL: ${LE_EMAIL}
+      LE_DOMAINS: ${REGISTRY_DOMAIN},${UI_DOMAIN}
+      LE_REDIRECT: ${LE_REDIRECT}
+      SSL: ${PROXY_SSL}
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - /etc/localtime:/etc/localtime:ro
+      - ./sites-enabled:/etc/nginx/sites-enabled
