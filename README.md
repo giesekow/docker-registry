@@ -12,7 +12,6 @@ Example installation on ubuntu 20.04 `sudo apt-get install -y docker.io docker-c
 1. Domain name for the registry e.g. `registry.example.com`.
 2. Domain name for the frontend e.g. `ui.registry.example.com`.
 3. Email for settings up letsencrypt in case you want to use SSL connection with you domain. This is handled automatically and requires external domains. e.g. `certs@example.com`.
-4. 
 
 ## Installation on Ubuntu 18.04 and above.
 To setup the service on ubuntu run `bash install.sh` and follow the prompt. You will be asked to entry the required information above.
