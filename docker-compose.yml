@@ -19,7 +19,7 @@ services:
       - "5000"
 
   registry-frontend:
-    image: 'giesekow/docker-registry-ui:1.0.0'
+    image: 'giesekow/docker-registry-ui:latest'
     expose:
       - "80"
     environment:
