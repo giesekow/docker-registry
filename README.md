@@ -5,7 +5,12 @@
 2. docker-compose
 3. text editor e.g. `vim`, `gedit`, etc.
 
-Example installation on ubuntu 20.04 `sudo apt-get install -y docker.io docker-compose vim`
+Example installation on ubuntu 20.04 `sudo apt-get install -y docker.io docker-compose vim`  
+
+Add current user to docker group:
+`sudo usermod -aG docker $USER`
+
+logout and login before proceeding to the installation.
 
 
 ## Required information
