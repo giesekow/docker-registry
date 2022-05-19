@@ -43,7 +43,7 @@ else
   chmod +x stop.sh
 
   sudo apt install apache2-utils
-
+  mkdir -p auth
   echo "Enter Username for accessing the registry"
   read user_name
   htpasswd -Bc ./auth/registry.password $user_name
