@@ -13,6 +13,7 @@ upstream registry-frontend {
 
 server {
     server_name <REGISTRY_DOMAIN_NAME>;
+    client_max_body_size 0;
     location / {
         proxy_pass http://registry-server;
         proxy_set_header X-Real-IP $remote_addr;
